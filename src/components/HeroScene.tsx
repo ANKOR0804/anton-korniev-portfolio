@@ -124,6 +124,8 @@ export const HeroScene = ({ className }: HeroSceneProps) => {
   const isMounted = useIsMounted();
   const isDark = isMounted ? resolvedTheme === 'dark' : false;
 
+  if (!isMounted) return null;
+
   return (
     <Canvas
       className={className}
