@@ -27,7 +27,14 @@ export default function Hero() {
         </p>
 
         <div className="flex gap-4 pointer-events-auto">
-          <Button variant="primary">Download CV</Button>
+          <Button
+            as="a"
+            href="/cv.pdf"
+            download="Anton_Korniev_CV.pdf"
+            variant="primary"
+          >
+            Download CV
+          </Button>
           <Button
             variant="outline"
             className="backdrop-blur-sm"

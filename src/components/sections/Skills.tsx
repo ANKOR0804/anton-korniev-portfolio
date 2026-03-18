@@ -189,18 +189,19 @@ export const Skills = () => {
     <section
       id="skills"
       className={cn(
-        'min-h-screen flex items-center',
+        'flex items-center',
         'px-6 md:px-16 lg:px-24 py-24',
       )}
     >
-      <div className="max-w-6xl mx-auto w-full">
-
+      <div className="container mx-auto px-6 md:px-16">
         {/* Заголовок */}
         <div className="mb-16">
-          <p className={cn(
-            'text-sm font-medium tracking-[0.2em] uppercase mb-3',
-            'text-slate-700 dark:text-violet-400',
-          )}>
+          <p
+            className={cn(
+              'text-sm font-medium tracking-[0.2em] uppercase mb-3',
+              'text-slate-700 dark:text-violet-400',
+            )}
+          >
             Skills
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-slate-100">
@@ -214,7 +215,6 @@ export const Skills = () => {
             <SkillCategory key={item.category} {...item} index={index} />
           ))}
         </div>
-
       </div>
     </section>
   );

@@ -48,11 +48,11 @@ export const Contacts = () => {
     <section
       id="contacts"
       className={cn(
-        'min-h-screen flex items-center',
+        'flex items-center',
         'px-6 md:px-16 lg:px-24 py-24',
       )}
     >
-      <div className="max-w-6xl mx-auto w-full">
+      <div className="container mx-auto px-6 md:px-16">
         {/* Заголовок */}
         <div className="mb-16">
           <p

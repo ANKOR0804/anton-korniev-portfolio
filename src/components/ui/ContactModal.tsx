@@ -62,8 +62,8 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
       {/* Modal */}
       <div
         className={cn(
-          'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50',
-          'w-full max-w-md mx-4',
+          'fixed left-4 right-4 top-1/2 -translate-y-1/2 z-50',
+          'md:left-1/2 md:right-auto md:w-full md:max-w-md md:-translate-x-1/2',
           'bg-white dark:bg-slate-900',
           'border border-slate-200 dark:border-slate-800',
           'rounded-2xl shadow-2xl',

@@ -3,21 +3,32 @@ import { cn } from '@/lib/utils';
 type ButtonVariant = 'primary' | 'outline';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonAsButton = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  as?: 'button';
+  href?: never;
+};
+
+type ButtonAsAnchor = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  as: 'a';
+  href: string;
+};
+
+type ButtonProps = (ButtonAsButton | ButtonAsAnchor) & {
   variant?: ButtonVariant;
   size?: ButtonSize;
   children: React.ReactNode;
-}
+};
 
 export const Button = ({
   variant = 'primary',
   size = 'md',
   className,
   children,
+  as: Tag = 'button',
   ...props
 }: ButtonProps) => {
   return (
-    <button
+    <Tag
       className={cn(
         'inline-flex items-center justify-center font-medium tracking-wide',
         'rounded-lg transition-opacity duration-200 hover:opacity-80',
@@ -34,9 +45,10 @@ export const Button = ({
 
         className,
       )}
-      {...props}
+      {...(props as React.ButtonHTMLAttributes<HTMLButtonElement> &
+        React.AnchorHTMLAttributes<HTMLAnchorElement>)}
     >
       {children}
-    </button>
+    </Tag>
   );
 };
