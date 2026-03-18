@@ -24,7 +24,8 @@ export const Header = () => {
         'fixed top-0 left-0 right-0 z-50',
         'px-6 py-4 flex items-center justify-between',
         'transition-all duration-300',
-        isScrolled && 'backdrop-blur-md border-b border-[var(--foreground)]/10',
+        isScrolled &&
+          'backdrop-blur-md border-b border-[#0ea5e9]/20 dark:border-[#61dafb]/20',
         isScrolled && 'bg-[var(--background)]/80',
       )}
     >
@@ -43,8 +44,8 @@ export const Header = () => {
             key={href}
             href={href}
             className={cn(
-              'text-sm font-medium tracking-wide',
-              'opacity-60 hover:opacity-100',
+              'text-base font-medium tracking-wide',
+              'opacity-60 hover:opacity-100 dark:opacity-85 dark:hover:opacity-100',
               'transition-opacity duration-200',
             )}
           >
