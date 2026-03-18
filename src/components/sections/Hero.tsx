@@ -1,11 +1,16 @@
+'use client'
+
+import { useState } from 'react';
 import { HeroScene } from '@/components/HeroScene';
 import { Button } from '@/components/ui/Button';
+import { ContactModal } from '@/components/ui/ContactModal';
 
 export default function Hero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section id="hero-section" className="relative h-screen overflow-hidden">
       <HeroScene className="absolute inset-0 z-0" />
-
       {/* Текст внизу */}
       <div className="absolute bottom-16 left-0 right-0 z-10 flex flex-col items-center text-center pointer-events-none">
         <p className="font-medium tracking-[0.2em] uppercase text-slate-700 dark:text-purple-400 mb-3">
@@ -23,11 +28,20 @@ export default function Hero() {
 
         <div className="flex gap-4 pointer-events-auto">
           <Button variant="primary">Download CV</Button>
-          <Button variant="outline" className="backdrop-blur-sm">
+          <Button
+            variant="outline"
+            className="backdrop-blur-sm"
+            onClick={() => setIsModalOpen(true)}
+          >
             Contact
           </Button>
         </div>
       </div>
+
+      <ContactModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </section>
   );
 }
