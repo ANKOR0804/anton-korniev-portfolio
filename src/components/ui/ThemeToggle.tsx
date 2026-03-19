@@ -5,12 +5,12 @@ import { cn } from '@/lib/utils';
 import { useIsMounted } from '@/hooks/useIsMounted';
 
 export const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const isMounted = useIsMounted();
 
   if (!isMounted) return <div className="w-[52px] h-7" />;
 
-  const isDark = theme === 'dark';
+  const isDark = resolvedTheme === 'dark';
 
   return (
     <button
