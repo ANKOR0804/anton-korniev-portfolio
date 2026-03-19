@@ -6,6 +6,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Environment, useGLTF } from '@react-three/drei';
 import { useTheme } from 'next-themes';
 import { useIsMounted } from '@/hooks/useIsMounted';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 // Рисуем звезду на 2D canvas и возвращаем как Three.js текстуру
 function createStarTexture(): CanvasTexture {
@@ -98,12 +99,19 @@ function Particles({ isDark }: ParticlesProps) {
   );
 }
 
-function ReactModel() {
+function ReactModel({ isMobile }: { isMobile: boolean }) {
   const ref = useRef<Group>(null);
   const { scene } = useGLTF('/models/react-logo.glb');
 
   useFrame((state) => {
     if (!ref.current) return;
+
+    if (isMobile) {
+      // статичное медленное вращение
+      ref.current.rotation.y += 0.005;
+      return;
+    }
+
     const targetX = state.pointer.y * Math.PI;
     const targetY = state.pointer.x * Math.PI;
     ref.current.rotation.x += (targetX - ref.current.rotation.x) * 0.05;
@@ -123,6 +131,7 @@ export const HeroScene = ({ className }: HeroSceneProps) => {
   const { resolvedTheme } = useTheme();
   const isMounted = useIsMounted();
   const isDark = isMounted ? resolvedTheme === 'dark' : false;
+  const isMobile = useIsMobile();
 
   if (!isMounted) return null;
 
@@ -139,7 +148,7 @@ export const HeroScene = ({ className }: HeroSceneProps) => {
       <Particles isDark={isDark} />
 
       <Suspense fallback={null}>
-        <ReactModel />
+        <ReactModel isMobile={isMobile} />
       </Suspense>
 
       <Environment preset="city" />
